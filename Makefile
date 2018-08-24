@@ -2,7 +2,7 @@ ROOT_DIR = $(CURDIR)
 SOURCE_DIR = $(CURDIR)/src
 
 MANAGER = python $(SOURCE_DIR)/manage.py
-VENV = . $(ROOT_DIR)/.env/bin/activate;
+VENV = . $(ROOT_DIR)/.venv/bin/activate;
 SUPERVISOR = sudo supervisorctl
 
 # Clean project

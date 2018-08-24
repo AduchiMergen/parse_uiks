@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Поиск УИКа</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.2/dialog-polyfill.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js" async></script>
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.2/dialog-polyfill.min.js"
+      async></script>
+</head>
+<body>
+
+<!-- Wide card with share menu button -->
+<style>
+  #map {
+    height: 100%;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .welcome {
+    position: absolute;
+    top: 10%;
+    max-height: 80%;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 512px;
+    display: flex;
+  }
+
+  .demo-card-wide.mdl-card {
+    width: 512px;
+    padding: 0;
+  }
+
+  .demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('https://getmdl.io/assets/demos/welcome_card.jpg') center / cover;
+  }
+
+  .demo-card-wide > .mdl-card__supporting-text {
+    flex-direction: column;
+    flex: 1;
+    display: flex;
+  }
+
+  .demo-card-wide > .mdl-card__menu {
+    color: #fff;
+  }
+
+  #result .mdl-list__item:hover {
+    background-color: #eee;
+    cursor: pointer;
+  }
+</style>
+<div class="welcome">
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Поиск УИКа</h2>
+    </div>
+    <div class="mdl-card__supporting-text" style="padding: 0; width: 100%">
+        <script async src="https://telegram.org/js/telegram-widget.js?4" data-telegram-login="chishubot" data-size="large" data-auth-url="" data-request-access="write"></script>
+
+      <div class="mdl-grid" style="width: 100%">
+        <div class="mdl-cell mdl-cell--10-col">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+            <input class="mdl-textfield__input" type="text" id="search">
+            <label class="mdl-textfield__label" for="search">Ваш адрес или номер УИКа</label>
+          </div>
+        </div>
+        <div class="mdl-cell mdl-cell--1-col" style="margin-top: 25px">
+          <div class="mdl-spinner mdl-js-spinner" id="loader"></div>
+        </div>
+      </div>
+      <div style="overflow: scroll">
+        <ul id="result" class="mdl-list" style="display: none"></ul>
+      </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect close"
+         onclick="$('.welcome').slideUp(); $('#search_button').slideDown();"
+      >
+        Закрыть
+      </a>
+    </div>
+    {#    <div class="mdl-card__menu">#}
+    {#      <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">#}
+    {#        <i class="material-icons">share</i>#}
+    {#      </button>#}
+    {#    </div>#}
+  </div>
+</div>
+<div id="map"></div>
+<div id="search_button"
+     style="position: absolute; bottom: 30px; right: 30px; display: none"
+     onclick="$('#search_button').slideUp(); $('.welcome').slideDown(); myMap.balloon.close();">
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <i class="material-icons">search</i>
+  </button>
+</div>
+<script async src="https://telegram.org/js/telegram-widget.js?4" data-telegram-login="chishubot" data-size="large" data-auth-url="" data-request-access="write"></script>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
+</script>
+
+<script>
+    ymaps.ready(init);
+
+    function init() {
+        // Создание карты.
+        myMap = new ymaps.Map("map", {
+            // Координаты центра карты.
+            // Порядок по умолчнию: «широта, долгота».
+            // Чтобы не определять координаты центра карты вручную,
+            // воспользуйтесь инструментом Определение координат.
+            center: [56.50, 84.99],
+            controls: ['fullscreenControl', 'zoomControl'],
+            // Уровень масштабирования. Допустимые значения:
+            // от 0 (весь мир) до 19.
+            zoom: 12
+        }, {
+            maxZoom: 16,
+            minZoom: 5
+        });
+        var loadingObjectManager = new ymaps.LoadingObjectManager('{% url "voterooms_json" %}?in_bbox=%b', {
+            // Включаем кластеризацию.
+            clusterize: true,
+            splitRequests: true,
+            // Зададим опции кластерам.
+            // Опции кластеров задаются с префиксом cluster.
+            clusterHasBalloon: true,
+            // Опции объектов задаются с префиксом geoObject.
+            geoObjectOpenBalloonOnClick: true
+        });
+        myMap.geoObjects.add(loadingObjectManager);
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/TypeWatch/3.0.0/jquery.typewatch.min.js"
+        integrity="sha256-FxujckmwH9va59KHuSlfQWni2g0vQ6Fr+jWNzfcsROc="
+        crossorigin="anonymous"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"
+    integrity="sha256-mF3k3rmuuGVi/6GhJ5atwMd7JsTsQhULB6GyLaFPrMU="
+    crossorigin="anonymous" async></script>
+
+<script type="text/html" id="template">
+  <li class="mdl-list__item mdl-list__item--two-line uiklist__item"
+      data-template-bind='[
+       {"attribute": "data-uik-id", "value": "voteroom_id"},
+       {"attribute": "data-uik-lat", "value": "voteroom_lat"},
+       {"attribute": "data-uik-lon", "value": "voteroom_lon"}
+    ]' onclick="show_uik(this)"
+  >
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-avatar">done</i>
+      <span data-content="title"></span>
+      <span class="mdl-list__item-sub-title" data-content="subtitle"></span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">room</i></a>
+    </span>
+  </li>
+</script>
+
+<script>
+    function show_uik(elem) {
+        myMap.setCenter([$(elem).data('uik-lat'), $(elem).data('uik-lon')], 15)
+            .then(function () {
+                var objects = myMap.geoObjects.get(0).objects;
+                var uik_id = $(elem).data('uik-id');
+                if (objects.getById(uik_id)) {
+                    objects.balloon.open(uik_id)
+                } else {
+                    objects.events.add('add',
+                        function (event) {
+                            if (event['originalEvent']['objectId'] === uik_id) {
+                                objects.balloon.open(uik_id)
+                            }
+                        }
+                    );
+                }
+            }, function (err) {
+                // Не удалось показать заданный регион
+            }, this);
+        $('.welcome').slideUp();
+        $('#search_button').slideDown();
+    }
+
+    function show_result(data) {
+        if (data['result'].length > 0) {
+            result = $('#result');
+            $('.mdl-card__title').slideUp();
+
+            var tmp = function (results) {
+                result.loadTemplate($('#template'), results);
+            };
+            result.slideUp(complete = tmp.bind(this, data['result']));
+            result.slideDown();
+        }
+        $('#loader').removeClass('is-active');
+    }
+
+    (function () {
+        var options = {
+            callback: function (value) {
+                $.getJSON('/search', {'q': value}, show_result);
+            },
+            wait: 750,
+            highlight: true,
+            allowSubmit: false,
+            captureLength: 1
+        };
+        $("#search").on('keypress', function () {
+            $('#loader').addClass('is-active');
+        });
+        $("#search").typeWatch(options);
+
+    })();
+</script>
+</body>
+</html>

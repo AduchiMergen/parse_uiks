@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from apps.addreses.views import input_view, query
+from apps.uiks.views import LocationList
+
 urlpatterns = [
+    path('', input_view),
+    path('voterooms.json', LocationList.as_view(), name='voterooms_json'),
+    path('search/', query),
     path('admin/', admin.site.urls),
 ]
