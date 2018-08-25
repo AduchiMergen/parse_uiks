@@ -60,7 +60,7 @@ name = "certifi"
 optional = false
 platform = "*"
 python-versions = "*"
-version = "2018.8.13"
+version = "2018.8.24"
 
 [[package]]
 category = "main"
@@ -91,6 +91,15 @@ optional = false
 platform = "All"
 python-versions = "*"
 version = "4.3.0"
+
+[[package]]
+category = "main"
+description = "Use Database URLs in your Django Application."
+name = "dj-database-url"
+optional = false
+platform = "any"
+python-versions = "*"
+version = "0.5.0"
 
 [[package]]
 category = "main"
@@ -127,28 +136,6 @@ version = "2.0.0"
 
 [package.dependencies]
 Django = ">=1.11"
-
-[[package]]
-category = "main"
-description = "script tag with additional attributes for django.forms.Media"
-name = "django-js-asset"
-optional = false
-platform = "OS Independent"
-python-versions = "*"
-version = "1.1.0"
-
-[[package]]
-category = "main"
-description = "Utilities for implementing Modified Preorder Tree Traversal with your Django Models and working with trees of Model instances."
-name = "django-mptt"
-optional = false
-platform = "*"
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "0.9.1"
-
-[package.dependencies]
-Django = ">=1.11"
-django-js-asset = "*"
 
 [[package]]
 category = "main"
@@ -328,6 +315,15 @@ wcwidth = "*"
 
 [[package]]
 category = "main"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+name = "psycopg2-binary"
+optional = false
+platform = "any"
+python-versions = "*"
+version = "2.7.5"
+
+[[package]]
+category = "main"
 description = "Run a subprocess in a pseudo terminal"
 name = "ptyprocess"
 optional = false
@@ -358,6 +354,15 @@ version = "2.7.3"
 
 [package.dependencies]
 six = ">=1.5"
+
+[[package]]
+category = "main"
+description = "Strict separation of settings from code."
+name = "python-decouple"
+optional = false
+platform = "any"
+python-versions = "*"
+version = "3.1"
 
 [[package]]
 category = "main"
@@ -443,7 +448,7 @@ python-versions = "*"
 version = "0.1.7"
 
 [metadata]
-content-hash = "62bcbe5702acc0769124cca77024f0bef7171187b738aed82a8873ab2b36de52"
+content-hash = "7338dacdd8002873ee62e3494cec0618d52f2e23e7941a59633cd4ded6b19147"
 platform = "*"
 python-versions = "3.6"
 
@@ -453,15 +458,14 @@ arrow = ["a558d3b7b6ce7ffc74206a86c147052de23d3d4ef0e17c210dd478c53575c4cd"]
 backcall = ["38ecd85be2c1e78f77fd91700c76e14667dc21e2713b63876c0eb901196e01e4", "bbbf4b1e5cd2bdb08f915895b51081c041bac22394fdfcfdfbe9f14b77c08bf2"]
 beautifulsoup4 = ["194ec62a25438adcb3fdb06378b26559eda1ea8a747367d34c33cef9c7f48d57", "90f8e61121d6ae58362ce3bed8cd997efb00c914eae0ff3d363c32f9a9822d10", "f0abd31228055d698bb392a826528ea08ebb9959e6bea17c606fd9c9009db938"]
 blessed = ["777b0b6b5ce51f3832e498c22bc6a093b6b5f99148c7cbf866d26e2dec51ef21", "9a0a98c7070b016341ae0300415deeda930a340ef7961d9b920a5cb200a601e2"]
-certifi = ["4c1d68a1408dd090d2f3a869aa94c3947cc1d967821d1ed303208c9f41f0f2f4", "b6e8b28b2b7e771a41ecdd12d4d43262ecab52adebbafa42c77d6b57fb6ad3a4"]
+certifi = ["376690d6f16d32f9d1fe8932551d80b23e9d393a8578c5633a2ed39a64861638", "456048c7e371c089d0a77a5212fb37a2c2dce1e24146e3b7e0261736aaeaa22a"]
 chardet = ["84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae", "fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"]
 colorama = ["463f8483208e921368c9f306094eb6f725c6ca42b0f97e313cb5d5512459feda", "48eb22f4f8461b1df5734a074b57042430fb06e1d61bd1e11b078c0fe6d7a1f1"]
 decorator = ["2c51dff8ef3c447388fe5e4453d24a2bf128d3a4c32af3fabef1f01c6851ab82", "c39efa13fbdeb4506c476c9b3babf6a718da943dab7811c206005a4a956c080c"]
+dj-database-url = ["4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163", "851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"]
 django = ["7f246078d5a546f63c28fc03ce71f4d7a23677ce42109219c24c9ffb28416137", "ea50d85709708621d956187c6b61d9f9ce155007b496dd914fdb35db8d790aec"]
 django-extensions = ["c3c8524056ab1174c6fc769b0599e60f7e7797ce34f38db2effc48885a0a982c", "e279344c6d825adb27694755aa924702d3cc401f8fad5ad9ef2d577948778a5f"]
 django-filter = ["6f4e4bc1a11151178520567b50320e5c32f8edb552139d93ea3e30613b886f56", "86c3925020c27d072cdae7b828aaa5d165c2032a629abbe3c3a1be1edae61c58"]
-django-js-asset = ["30149158206f693a5d027fe590096fc84495486bd11cd77d395b4f2ec27fc1d0", "a395d8d19eb201ea8d2bd4f145b38f1717cd74c0f609f040141d8724c5a27f36"]
-django-mptt = ["18a41d1b56ca7c02a5b04d246e33ee2d18f6ee5459c02ed1d945f5abdef23a2e", "689a04cce0981671d6061a9928c33a16b47abb0d4cd43cf7dec31ae284fdae9d"]
 django-picklefield = ["57e4349c7f75eab08fe7ceb11e7135644fdf771e2777a754db4f07e5c63c191f", "61e3ba7f6df82d8df9e6be3a8c55ef589eb3bf926c3d25d2b7949b07eae78354"]
 django-q = ["0a7ddc487f21ae1cae05ab0dba973c90fbf72673eb36979bbcdb36beb2a079ef", "1c2db53da57d114f4766bad86893eb26e56a065a8fe8486ecadf1758e36c81e0"]
 djangorestframework = ["b6714c3e4b0f8d524f193c91ecf5f5450092c2145439ac2769711f7eba89a9d9", "c375e4f95a3a64fccac412e36fb42ba36881e52313ec021ef410b40f67cddca4"]
@@ -476,9 +480,11 @@ pendulum = ["0ec5371949e147753661e1e98721273170638034dfceb578f29d69d93d3d474b", 
 pexpect = ["2a8e88259839571d1251d278476f3eec5db26deb73a70be5ed5dc5435e418aba", "3fbd41d4caf27fa4a377bfd16fef87271099463e6fa73e92a52f92dfee5d425b"]
 pickleshare = ["84a9257227dfdd6fe1b4be1319096c20eb85ff1e82c7932f36efccfe1b09737b", "c9a2541f25aeabc070f12f452e1f2a8eae2abd51e1cd19e8430402bdf4c1d8b5"]
 prompt-toolkit = ["1df952620eccb399c53ebb359cc7d9a8d3a9538cb34c5a1344bdbeb29fbcc381", "3f473ae040ddaa52b52f97f6b4a493cfa9f5920c255a12dc56a7d34397a398a4", "858588f1983ca497f1cf4ffde01d978a3ea02b01c8a26a8bbc5cd2e66d816917"]
+psycopg2-binary = ["04afb59bbbd2eab3148e6816beddc74348078b8c02a1113ea7f7822f5be4afe3", "098b18f4d8857a8f9b206d1dc54db56c2255d5d26458917e7bcad61ebfe4338f", "0bf855d4a7083e20ead961fda4923887094eaeace0ab2d76eb4aa300f4bbf5bd", "197dda3ffd02057820be83fe4d84529ea70bf39a9a4daee1d20ffc74eb3d042e", "278ef63afb4b3d842b4609f2c05ffbfb76795cf6a184deeb8707cd5ed3c981a5", "3cbf8c4fc8f22f0817220891cf405831559f4d4c12c4f73913730a2ea6c47a47", "4305aed922c4d9d6163ab3a41d80b5a1cfab54917467da8168552c42cad84d32", "47ee296f704fb8b2a616dec691cdcfd5fa0f11943955e88faa98cbd1dc3b3e3d", "4a0e38cb30457e70580903367161173d4a7d1381eb2f2cfe4e69b7806623f484", "4d6c294c6638a71cafb82a37f182f24321f1163b08b5d5ca076e11fe838a3086", "4f3233c366500730f839f92833194fd8f9a5c4529c8cd8040aa162c3740de8e5", "5221f5a3f4ca2ddf0d58e8b8a32ca50948be9a43351fda797eb4e72d7a7aa34d", "5c6ca0b507540a11eaf9e77dee4f07c131c2ec80ca0cffa146671bf690bc1c02", "789bd89d71d704db2b3d5e67d6d518b158985d791d3b2dec5ab85457cfc9677b", "7b94d29239efeaa6a967f3b5971bd0518d2a24edd1511edbf4a2c8b815220d07", "89bc65ef3301c74cf32db25334421ea6adbe8f65601ea45dcaaf095abed910bb", "89d6d3a549f405c20c9ae4dc94d7ed2de2fa77427a470674490a622070732e62", "97521704ac7127d7d8ba22877da3c7bf4a40366587d238ec679ff38e33177498", "a395b62d5f44ff6f633231abe568e2203b8fabf9797cd6386aa92497df912d9a", "a6d32c37f714c3f34158f3fa659f3a8f2658d5f53c4297d45579b9677cc4d852", "a89ee5c26f72f2d0d74b991ce49e42ddeb4ac0dc2d8c06a0f2770a1ab48f4fe0", "b4c8b0ef3608e59317bfc501df84a61e48b5445d45f24d0391a24802de5f2d84", "b5fcf07140219a1f71e18486b8dc28e2e1b76a441c19374805c617aa6d9a9d55", "b86f527f00956ecebad6ab3bb30e3a75fedf1160a8716978dd8ce7adddedd86f", "be4c4aa22ba22f70de36c98b06480e2f1697972d49eb20d525f400d204a6d272", "c2ac7aa1a144d4e0e613ac7286dae85671e99fe7a1353954d4905629c36b811c", "de26ef4787b5e778e8223913a3e50368b44e7480f83c76df1f51d23bd21cea16", "e70ebcfc5372dc7b699c0110454fc4263967f30c55454397e5769eb72c0eb0ce", "eadbd32b6bc48b67b0457fccc94c86f7ccc8178ab839f684eb285bb592dc143e", "ecbc6dfff6db06b8b72ae8a2f25ff20fbdcb83cb543811a08f7cb555042aa729"]
 ptyprocess = ["923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0", "d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f"]
 pygments = ["78f3f434bcc5d6ee09020f92ba487f95ba50f1e3ef83ae96b9d5ffa1bab25c5d", "dbae1046def0efb574852fab9e90209b23f556367b5a320c0bcb871c77c3e8cc"]
 python-dateutil = ["1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8dc5c0", "e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8"]
+python-decouple = ["1317df14b43efee4337a4aa02914bf004f010cd56d6c4bd894e6474ec8c4fe2d"]
 pytz = ["a061aa0a9e06881eb8b3b2b43f05b9439d6583c206d0a6c340ff72a7b6669053", "ffb9ef1de172603304d9d2819af6f5ece76f2e85ec10692a524dd876e72bf277"]
 pytzdata = ["1d936da41ee06216d89fdc7ead1ee9a5da2811a8787515a976b646e110c3f622", "e4ef42e82b0b493c5849eed98b5ab49d6767caf982127e9a33167f1153b36cc5"]
 requests = ["63b52e3c866428a224f97cab011de738c36aec0185aa91cfacd418b5d58911d1", "ec22d826a36ed72a7358ff3fe56cbd4ba69dd7a6718ffd450ff0e9df7a47ce6a"]

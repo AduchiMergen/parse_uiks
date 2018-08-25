@@ -49,3 +49,10 @@ shell:
 .PHONY : test
 test:
 	cd $(SOURCE_DIR); $(VENV) $(MANAGER) test
+
+.PHONY : build
+build:
+	rm -rf $(SOURCE_DIR)/build/
+	mkdir $(SOURCE_DIR)/build/
+	git checkout-index -a -f --prefix=$(SOURCE_DIR)/build/
+	cd $(SOURCE_DIR)/build/; docker build .

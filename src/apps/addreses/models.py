@@ -1,5 +1,4 @@
 from django.db import models
-from mptt.models import MPTTModel
 
 SKIP_LEVELS = ['2', '13']
 

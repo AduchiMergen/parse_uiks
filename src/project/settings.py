@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from decouple import config
+from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(  # repo_dir
@@ -28,10 +30,20 @@ BASE_DIR = os.path.dirname(  # repo_dir
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1',
+                       cast=lambda v: [s.strip() for s in v.split(',')])
 
-ALLOWED_HOSTS = []
+SECRET_KEY = config('SECRET_KEY')
 
+
+DATABASES = {
+    'default': config(
+        'DATABASE_URL',
+        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'),
+        cast=db_url
+    )
+}
 
 # Application definition
 
@@ -47,7 +59,6 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'django_q',
-    'mptt',
     'rest_framework',
     'rest_framework_gis',
 
@@ -125,3 +136,13 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 STATIC_URL = '/static/'
+
+Q_CLUSTER = {
+    'name': 'DjangORM',
+    'workers': 10,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default'
+}
