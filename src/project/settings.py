@@ -18,9 +18,7 @@ from dj_database_url import parse as db_url
 BASE_DIR = os.path.dirname(  # repo_dir
     os.path.dirname(  # src
         os.path.dirname(  # project
-            os.path.dirname(  # settings
-                os.path.abspath(__file__)  # setting.py
-            )
+            os.path.abspath(__file__)  # setting.py
         )
     )
 )
@@ -95,7 +93,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
-
 
 
 # Password validation

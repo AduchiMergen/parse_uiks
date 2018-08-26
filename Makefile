@@ -52,7 +52,7 @@ test:
 
 .PHONY : build
 build:
-	rm -rf $(SOURCE_DIR)/build/
-	mkdir $(SOURCE_DIR)/build/
-	git checkout-index -a -f --prefix=$(SOURCE_DIR)/build/
-	cd $(SOURCE_DIR)/build/; docker build .
+	rm -rf $(CURDIR)/build/
+	mkdir $(CURDIR)/build/
+	git checkout-index -a -f --prefix=$(CURDIR)/build/
+	cd $(CURDIR)/build/; docker build . -t aduchi/tomsk_uiks:uiki
