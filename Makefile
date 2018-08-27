@@ -56,3 +56,7 @@ build:
 	mkdir $(CURDIR)/build/
 	git checkout-index -a -f --prefix=$(CURDIR)/build/
 	cd $(CURDIR)/build/; docker build . -t aduchi/tomsk_uiks:uiki
+
+.PHONY : push
+push: build
+	docker push aduchi/tomsk_uiks:uiki
