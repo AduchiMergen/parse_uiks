@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,6 +101,34 @@
     background-color: #eee;
     cursor: pointer;
   }
+
+  .button_holder {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+
+  }
+
+  .contact_widget__button {
+    margin: 2px;
+  }
+
+  .contact_widget__button__facebook {
+    background: transparent url({% static 'img/facebook.png' %}) 50% no-repeat;
+    background-size: cover;
+  }
+  .contact_widget__button__telegram {
+    background: transparent url({% static 'img/telegram.png' %}) 50% no-repeat;
+    background-size: cover;
+  }
+  .contact_widget__button__vk {
+    background: transparent url({% static 'img/vk.png' %}) 50% no-repeat;
+    background-size: cover;
+  }
+  .contact_widget__networks_close {
+    display: none;
+  }
 </style>
 <div class="welcome">
   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -138,12 +167,54 @@
   </div>
 </div>
 <div id="map"></div>
-<div id="search_button"
-     style="position: absolute; bottom: 30px; right: 30px; display: none"
-     onclick="$('#search_button').slideUp(); $('.welcome').slideDown(); myMap.balloon.close();">
-  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-    <i class="material-icons">search</i>
-  </button>
+<div class="button_holder">
+  <div id="search_button"
+       style="display: none"
+       onclick="$('#search_button').slideUp(); $('.welcome').slideDown(); myMap.balloon.close();">
+    <button
+        class="contact_widget__button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+      <i class="material-icons">search</i>
+    </button>
+  </div>
+  <div class="contact_widget">
+    <div class="contact_widget__networks contact_widget__networks_close">
+      <a href="https://www.facebook.com/TomskGolos/" target="_blank"
+          class="contact_widget__button
+                 contact_widget__button__facebook
+                 mdl-button
+                 mdl-button--fab
+                 mdl-js-button
+                 mdl-js-ripple-effect
+                ">
+      </a>
+      <a href="tg://resolve?domain=aduchimergen" target="_blank"
+          class="contact_widget__button
+                 contact_widget__button__telegram
+                 mdl-button
+                 mdl-button--fab
+                 mdl-js-button
+                 mdl-js-ripple-effect
+                ">
+      </a>
+      <a href="https://vk.com/golos_tomsk" target="_blank"
+         class="contact_widget__button
+                contact_widget__button__vk
+                mdl-button
+                mdl-button--fab
+                mdl-js-button
+                mdl-js-ripple-effect
+               ">
+      </a>
+    </div>
+    <button class="contact_widget__button
+               contact_widget__chat_button
+               mdl-button
+               mdl-js-button
+               mdl-button--fab
+               mdl-js-ripple-effect">
+      <i class="material-icons">chat</i>
+    </button>
+  </div>
 </div>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
 </script>
@@ -212,6 +283,21 @@
 </script>
 
 <script>
+    function contact_widget__view_togle() {
+        $('.contact_widget__networks').slideToggle();
+        var icon = $('.contact_widget__chat_button').children('i');
+        if (icon.text() === 'close') {
+            icon.text('chat');
+        } else {
+            icon.text('close');
+        }
+    }
+
+    (function () {
+        $('.contact_widget__chat_button').on('click', contact_widget__view_togle);
+    })();
+
+
     function show_uik(elem) {
         myMap.setCenter([$(elem).data('uik-lat'), $(elem).data('uik-lon')], 15)
             .then(function () {

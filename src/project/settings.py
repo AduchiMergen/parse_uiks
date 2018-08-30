@@ -133,7 +133,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'public', 'static')
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'src', 'static')
+]
 Q_CLUSTER = {
     'name': 'DjangORM',
     'workers': 10,
