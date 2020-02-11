@@ -6,7 +6,7 @@ authors = ["Artem Kanarev <aduchimergen@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "3.6"
-django = "^2.1"
+django = "^2.2"
 django-extensions = "^2.0"
 pendulum = "^2.0"
 requests = "^2.21"
